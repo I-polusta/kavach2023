@@ -1,0 +1,7 @@
+.authPage__Container__primary {
+  height: 100vh;
+}
+.auth__body__container {
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,50 @@
+.HP__right__container {
+  width: 41%;
+  height: 100vh;
+  background-color: #01060e;
+}
+
+.login__form__container {
+  position: relative;
+  top: 157px;
+  padding: 0px 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.Form__heading {
+  font-weight: 700;
+  font-size: 48px;
+  color: white;
+  line-height: 60px;
+}
+
+.Form__subheading {
+  font-weight: 400;
+  color: white;
+  font-size: 24px;
+  line-height: 30px;
+}
+.MuiInputLabel-root,
+.MuiInputBase-input {
+  color: white !important;
+}
+
+.MuiTextField-root {
+  border-radius: 8px;
+  background: #19273f;
+}
+
+.fp__subheading {
+  padding: 8px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.fp__subheading__signup {
+  margin-top: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
