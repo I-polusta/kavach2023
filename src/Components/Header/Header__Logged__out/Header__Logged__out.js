@@ -14,7 +14,9 @@ function Header__Logged__out() {
       >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">LOGO</Link>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              KAVACH2023
+            </Link>
           </Typography>
         </Toolbar>
       </AppBar>

@@ -9,19 +9,21 @@ import {
   TextField,
 } from "@mui/material";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Key } from "@mui/icons-material";
 
 const validationSchema = yup.object({
   key: yup.string("Enter your key").required("Email is required"),
 });
 function SearchKeyComp() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       key: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      navigate("/dashboard");
     },
   });
   return (
@@ -37,14 +39,32 @@ function SearchKeyComp() {
           <form onSubmit={formik.handleSubmit}>
             <div className="searchInput">
               <TextField
-                sx={{ mb: 1, color: "white", height: "58px" }}
                 fullWidth
                 margin="normal"
-                id="email"
-                label="Enter Key"
+                id="key"
+                placeholder="enter key"
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">kg</InputAdornment>
+                    <InputAdornment
+                      position="start"
+                      style={{ height: "30px", width: "30px" }}
+                    >
+                      <Key />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment
+                      position="end"
+                      style={{ height: "50px", width: "100px" }}
+                    >
+                      <Button
+                        variant="text"
+                        size="large"
+                        style={{ color: "white" }}
+                      >
+                        Search
+                      </Button>
+                    </InputAdornment>
                   ),
                 }}
                 value={formik.values.key}
@@ -52,20 +72,6 @@ function SearchKeyComp() {
                 error={formik.touched.key && Boolean(formik.errors.key)}
                 helperText={formik.touched.key && formik.errors.key}
               />
-
-              <Button
-                color="primary"
-                variant="contained"
-                type="submit"
-                fullWidth
-                style={{
-                  background: "#021E4E",
-                  borderRadius: "8px",
-                  height: "58px",
-                }}
-              >
-                Login
-              </Button>
             </div>
           </form>
         </div>

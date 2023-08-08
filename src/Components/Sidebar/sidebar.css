@@ -1,0 +1,32 @@
+.sidebar__container {
+  background-color: #01060e;
+  width: 16vw;
+  height: 100vh;
+  padding-top: 92px;
+  padding-right: 32px;
+  overflow: hidden;
+}
+.sidebar__list,
+.sidebar__list__active {
+  padding: 0px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 24px;
+  line-height: 53px;
+  font-weight: normal;
+}
+
+.sidebar__list__active {
+  background-color: #070e17;
+  padding: 21px;
+
+  line-height: normal;
+  border-radius: 0px 12px 12px 0px;
+}
+
+.pill {
+  width: 18px;
+  background-color: #10346c;
+  z-index: 100;
+}

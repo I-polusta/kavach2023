@@ -1,0 +1,12 @@
+.header__inContainer {
+  background-color: #01060e;
+  padding: 36px;
+  display: flex;
+  align-items: center;
+}
+.header__heading {
+  font-size: 48px;
+}
+.header__textfield {
+  padding-left: 112px;
+}

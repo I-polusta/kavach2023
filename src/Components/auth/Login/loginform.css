@@ -36,6 +36,8 @@
 }
 
 .fp__subheading {
+  font-style: normal;
+  font-weight: 300;
   padding: 8px;
   display: flex;
   justify-content: flex-end;
@@ -43,8 +45,16 @@
 }
 
 .fp__subheading__signup {
-  margin-top: 56px;
+  margin-top: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.toastsuccess,
+.toasterror {
+  background: darkblue;
+  color: #fff;
+  font-size: 20px;
+  width: 34vw;
+  padding: 30px 20px;
 }

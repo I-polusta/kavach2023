@@ -3,7 +3,10 @@ import "./loginform.css";
 import * as yup from "yup";
 import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Navigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   email: yup
@@ -17,6 +20,7 @@ const validationSchema = yup.object({
 });
 
 function LoginForm() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -24,7 +28,33 @@ function LoginForm() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      if (
+        values.email === "admin@gmail.com" &&
+        values.password === "12345678"
+      ) {
+        toast.success("User Logged in", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/searchkey");
+      } else {
+        toast.error("Wrong Credentials, Try again", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
     },
   });
 
@@ -35,39 +65,37 @@ function LoginForm() {
         <p className="Form__subheading">Let’s get you started!</p>
         <div>
           <form onSubmit={formik.handleSubmit}>
-            <TextField
-              sx={{ mb: 1, color: "white" }}
-              fullWidth
-              margin="normal"
-              id="email"
-              name="email"
-              label="Email"
-              variant="outlined"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />
-            <TextField
-              sx={{ mb: 1 }}
-              fullWidth
-              margin="normal"
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              variant="outlined"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-            />
-            <FormControlLabel
-              control={<Checkbox />}
-              label="Remember me"
-              margin="normal"
-            />
-
+            <div style={{ padding: "10px 0px" }}>
+              <TextField
+                sx={{ mb: 1, color: "white" }}
+                fullWidth
+                margin="normal"
+                id="email"
+                name="email"
+                placeholder="email"
+                variant="outlined"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
+              />
+              <TextField
+                sx={{ mb: 1 }}
+                fullWidth
+                margin="normal"
+                id="password"
+                name="password"
+                placeholder="password"
+                type="password"
+                variant="outlined"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.password && Boolean(formik.errors.password)
+                }
+                helperText={formik.touched.password && formik.errors.password}
+              />
+            </div>
             <Button
               color="primary"
               variant="contained"
@@ -86,13 +114,8 @@ function LoginForm() {
         <div className="fp__subheading">
           <h5>Forgot Password?</h5>
         </div>
-        <div className="fp__subheading__signup">
-          <h5>
-            Don't have an account?
-            <Link to="/register">Sign Up</Link>
-          </h5>
-        </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

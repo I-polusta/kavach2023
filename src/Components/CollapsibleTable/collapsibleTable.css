@@ -1,0 +1,25 @@
+.MuiTable-root,
+.MuiTableCell-root {
+  color: white !important;
+}
+.high {
+  height: 25px;
+  width: 75px;
+
+  background-color: red;
+  border-radius: 12%;
+  display: inline-block;
+}
+.collapseContainer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.cc__heading {
+  font-size: 21px;
+}
+
+.cc__subheading {
+  font-size: 18px;
+}
