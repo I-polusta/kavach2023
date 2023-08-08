@@ -5,9 +5,9 @@ import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 const baseURL =
-  "http://10.20.7.109:8000/api/node/aa8d7407f88dca9b1779880c3d2e3245e02217f7366972d617f812c8dd73a96a/";
+  "http://192.168.27.88:8000/api/node/aa8d7407f88dca9b1779880c3d2e3245e02217f7366972d617f812c8dd73a96a/";
 
-const url = "http://10.20.7.109:8000/api/geofencer/";
+const url = "http://192.168.27.88:8000/api/geofencer/";
 
 function DashComp() {
   const handleClose = () => {
