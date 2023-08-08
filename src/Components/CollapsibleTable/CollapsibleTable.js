@@ -1,5 +1,4 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
@@ -9,22 +8,51 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import "./collapsibleTable.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Chip } from "@mui/material";
+import { Backdrop, Button, Chip, CircularProgress } from "@mui/material";
 import StarRatings from "react-star-ratings";
+import { toast } from "react-toastify";
 
 const baseURL = "http://10.20.7.109:8000/api/social-media/";
 
 function Row(props) {
   const { row } = props;
+  const url = `http://10.20.7.102:9090/api/website-report/?url=${row.link}`;
+  console.log(url);
   const [open, setOpen] = React.useState(false);
+  const [bopen, setBopen] = React.useState(false);
   console.log(row);
+
+  const handleReport = () => {
+    setBopen(true);
+    axios
+      .get(url)
+      .then((response) => {
+        setBopen(false);
+        console.log(response.data.url);
+        window.open(response.data.url, "_blank");
+      })
+      .catch((error) => {
+        console.log(error);
+        setBopen(false);
+        toast.error(" Try again", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      });
+  };
+
   return (
     <React.Fragment>
       <TableRow>
@@ -50,7 +78,9 @@ function Row(props) {
           />
         </TableCell>
         <TableCell align="center">
-          <Button variant="outlined">View Website</Button>
+          <Button variant="outlined" onClick={handleReport}>
+            View Report
+          </Button>
         </TableCell>
         <TableCell>
           <IconButton
@@ -109,6 +139,12 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={bopen}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </React.Fragment>
   );
 }
