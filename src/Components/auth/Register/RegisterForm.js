@@ -3,7 +3,9 @@ import "./registerform.css";
 import * as yup from "yup";
 import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 const validationSchema = yup.object({
   email: yup
@@ -14,31 +16,47 @@ const validationSchema = yup.object({
     .string("Enter your password")
     .min(8, "Password should be of minimum 8 characters length")
     .required("Password is required"),
-  cnfpassword: yup
-    .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
   fname: yup
     .string("Enter your First Name")
     .min(4, "Name should be of minimum 8 characters length")
-    .required("Name is required"),
-  lname: yup
-    .string("Enter your Last Name")
-    .min(8, "Name should be of minimum 8 characters length")
-    .required("Name is required"),
+    .required("Name is required")
 });
 function RegisterForm() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
-      fname: "",
-      lname: "",
-      cnfpassword: "",
+      fname: ""
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      axios.post("http://localhost:3000/auth/signup", {
+          email:values.email,
+          name:values.fname,
+          password:values.password
+        }).then((response) => {
+          if (response.status === 200){
+            navigate("/verify", {
+              state: {
+                email:values.email,
+                name:values.fname,
+                password:values.password
+              }
+            });
+          }
+        }).catch((error) => {
+          toast.error("Try again", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          })
+        });
     },
   });
 
@@ -49,30 +67,17 @@ function RegisterForm() {
         <p className="Form__subheading">Let’s get you started!</p>
         <div>
           <form onSubmit={formik.handleSubmit}>
-            <div className="RegForm__input__container">
               <TextField
                 margin="normal"
                 id="fname"
                 name="fname"
-                label="First Name"
+                label="Name"
                 variant="outlined"
                 value={formik.values.fname}
                 onChange={formik.handleChange}
                 error={formik.touched.fname && Boolean(formik.errors.fname)}
                 helperText={formik.touched.fname && formik.errors.fname}
-              />{" "}
-              <TextField
-                margin="normal"
-                id="lname"
-                name="lname"
-                label="Last Name"
-                variant="outlined"
-                value={formik.values.lname}
-                onChange={formik.handleChange}
-                error={formik.touched.lname && Boolean(formik.errors.lname)}
-                helperText={formik.touched.lname && formik.errors.lname}
               />
-            </div>
             <TextField
               fullWidth
               margin="normal"
@@ -97,23 +102,6 @@ function RegisterForm() {
               onChange={formik.handleChange}
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
-            />
-            <TextField
-              fullWidth
-              margin="normal"
-              id="cnfpassword"
-              name="cnfpassword"
-              label="Confirm Password"
-              type="password"
-              variant="outlined"
-              value={formik.values.cnfpassword}
-              onChange={formik.handleChange}
-              error={
-                formik.touched.cnfpassword && Boolean(formik.errors.cnfpassword)
-              }
-              helperText={
-                formik.touched.cnfpassword && formik.errors.cnfpassword
-              }
             />
             <Button
               color="primary"
