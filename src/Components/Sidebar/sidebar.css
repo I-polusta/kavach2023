@@ -9,6 +9,8 @@
 .sidebar__list,
 .sidebar__list__active {
   padding: 0px 32px;
+  padding: 21px;
+
   display: flex;
   align-items: center;
   justify-content: flex-start;

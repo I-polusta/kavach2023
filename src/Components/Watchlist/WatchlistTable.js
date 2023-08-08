@@ -29,11 +29,9 @@ function Row(props) {
     <React.Fragment>
       <TableRow>
         <TableCell>{row.id}</TableCell>
-        <TableCell align="center">{row.transaction.address}</TableCell>
-        <TableCell align="center"> {row.coin}</TableCell>
-        <TableCell align="center">{row.transaction.address}</TableCell>
-        <TableCell align="center">{row.type}</TableCell>
-        <TableCell align="center">{row.notify}</TableCell>
+        <TableCell align="center">{row.transaction.transactionHash}</TableCell>
+        <TableCell align="center"> {row.transaction.type}</TableCell>
+        <TableCell align="center">{row.transaction.time}</TableCell>
 
         <TableCell>
           <IconButton
@@ -60,23 +58,20 @@ function Row(props) {
             >
               <div className="collapseContainer">
                 <h1 className="cc__heading">Coin :</h1>
-                <h1 className="cc__subheading">{row.coin}</h1>
+                <h1 className="cc__subheading">{row.transaction.type}</h1>
               </div>
               <div className="collapseContainer">
                 <h1 className="cc__heading">Address :</h1>
-                <h1 className="cc__subheading">{row.transaction.address}</h1>
+                <h1 className="cc__subheading">
+                  {row.transaction.transactionHash}
+                </h1>
               </div>
-              <div className="collapseContainer">
-                <h1 className="cc__heading">Type:</h1>
-                <h1 className="cc__subheading">{row.type}</h1>
-              </div>{" "}
-              <div className="collapseContainer">
-                <h1 className="cc__heading">Notify:</h1>
-                <h1 className="cc__subheading">{row.notify}</h1>
-              </div>
-              <div className="collapseContainer">
-                <h1 className="cc__heading">Email Template:</h1>
-                <h1 className="cc__subheading">{row.email_template}</h1>
+
+              <div
+                className="collapseContainer"
+                style={{ justifyContent: "center" }}
+              >
+                <img src={row.transaction.logo} style={{ width: "20%" }} />
               </div>
             </Box>
           </Collapse>
@@ -103,9 +98,8 @@ function WatchlistTable() {
             <TableCell>#</TableCell>
             <TableCell align="center">Name</TableCell>
             <TableCell align="center">Coin</TableCell>
-            <TableCell align="center">Address</TableCell>
-            <TableCell align="center">Type</TableCell>
-            <TableCell align="center">Notifications</TableCell>
+            <TableCell align="center">Time</TableCell>
+
             <TableCell />
           </TableRow>
         </TableHead>

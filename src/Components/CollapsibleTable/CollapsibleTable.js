@@ -18,11 +18,11 @@ import { Backdrop, Button, Chip, CircularProgress } from "@mui/material";
 import StarRatings from "react-star-ratings";
 import { toast } from "react-toastify";
 
-const baseURL = "http://192.168.27.88:8000/api/social-media/";
+const baseURL = "http://10.20.7.109:8000/api/social-media/";
 
 function Row(props) {
   const { row } = props;
-  const url = `http://192.168.27.88:9090/api/website-report/?url=${row.link}`;
+  const url = `http://10.20.7.109:8000/api/website-report/?url=${row.link}`;
   console.log(url);
   const [open, setOpen] = React.useState(false);
   const [bopen, setBopen] = React.useState(false);
@@ -134,6 +134,10 @@ function Row(props) {
               <div className="collapseContainer">
                 <h1 className="cc__heading">Profile Visited :</h1>
                 <h1 className="cc__subheading">{row.profile_visited}</h1>
+              </div>
+              <div className="collapseContainer">
+                <h1 className="cc__heading">Profile Summary :</h1>
+                <h1 className="cc__subheading">{row.profile_summary}</h1>
               </div>
             </Box>
           </Collapse>

@@ -25,7 +25,23 @@
 }
 .dash__body__cont {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   text-align: center;
+}
+
+.collapseContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: start;
+  padding-bottom: 10px;
+}
+.cc__heading {
+  font-size: 21px;
+}
+
+.cc__subheading {
+  font-size: 18px;
 }

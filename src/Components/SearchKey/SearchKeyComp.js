@@ -11,9 +11,13 @@ import {
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { Key } from "@mui/icons-material";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+
+const baseURL = "http://10.20.7.109:8000/api/transaction/";
 
 const validationSchema = yup.object({
-  key: yup.string("Enter your key").required("Email is required"),
+  key: yup.string("Enter your key").required("key is required"),
 });
 function SearchKeyComp() {
   const navigate = useNavigate();
@@ -23,7 +27,25 @@ function SearchKeyComp() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      navigate("/dashboard");
+      axios
+        .get(baseURL + values.key + "/")
+        .then((response) => {
+          navigate("/dashboard");
+          localStorage.setItem("key", values.key);
+        })
+        .catch((error) => {
+          toast.error("Wrong Key, Try again", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          console.log(error);
+        });
     },
   });
   return (
@@ -61,6 +83,7 @@ function SearchKeyComp() {
                         variant="text"
                         size="large"
                         style={{ color: "white" }}
+                        type="submit"
                       >
                         Search
                       </Button>
@@ -76,6 +99,7 @@ function SearchKeyComp() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

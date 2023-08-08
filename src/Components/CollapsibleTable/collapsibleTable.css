@@ -12,8 +12,9 @@
 }
 .collapseContainer {
   display: flex;
+flex-wrap: wrap;
   align-items: center;
-  text-align: center;
+  text-align: start;
   padding-bottom: 10px;
 }
 .cc__heading {
