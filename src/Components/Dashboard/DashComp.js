@@ -5,7 +5,7 @@ import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 
@@ -70,16 +70,32 @@ function DashComp() {
         navigate("/watchlist");
       })
       .catch((error) => {
-        toast.error("Wrong Key, Try again", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        console.log(error);
+        console.log(error.response.status);
+        if (error.response.status === 400) {
+          toast.error("Key Already exists", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        } else {
+          toast.error("Wrong Key, Try again", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
+
         console.log(error);
       });
   };
@@ -100,14 +116,20 @@ function DashComp() {
           </span>
         </div>
         <div>
-          <Button
-            variant="contained"
-            style={{ backgroundColor: "#021e4e" }}
-            size="large"
-            onClick={handleVisualise}
+          <Link
+            to="https://metasleuth.io/result/btc/1bb5d1308f8b458287cab404da76b4231f24dbe555c576171f6d792c0000ca01"
+            target="blank"
           >
-            Visualize
-          </Button>
+            {" "}
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#021e4e" }}
+              size="large"
+              onClick={handleVisualise}
+            >
+              Visualize
+            </Button>
+          </Link>
         </div>
         <div>
           <Button
@@ -123,6 +145,14 @@ function DashComp() {
       <div className="dash__body" style={{ padding: "36px" }}>
         <div>
           <div className="dash__body__cont">
+            <div className="collapseContainer">
+              <h1 className="cc__heading">Mixed Transactions:</h1>
+              {data.mixed_transaction ? (
+                <h1 className="cc__subheading">Yes</h1>
+              ) : (
+                <h1 className="cc__subheading">No </h1>
+              )}
+            </div>
             <div className="collapseContainer">
               <h1 className="cc__heading">Type of event:</h1>
               <h1 className="cc__subheading">{data.type}</h1>
@@ -150,7 +180,7 @@ function DashComp() {
         <div>
           <Button
             variant="contained"
-            style={{ backgroundColor: "#021e4e" }}
+            style={{ backgroundColor: "#021e4e", width: "200px" }}
             size="large"
             onClick={handleAddToWatchlist}
           >

@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { Backdrop, Button, Chip, CircularProgress } from "@mui/material";
 import StarRatings from "react-star-ratings";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const baseURL = "http://10.20.7.109:8000/api/social-media/";
 
@@ -61,12 +62,24 @@ function Row(props) {
         </TableCell>
         <TableCell align="center">{row.social_media}</TableCell>
         <TableCell align="center">
-          {" "}
-          <Button variant="outlined">View Link</Button>
+          <Link to={row.link} target="blank">
+            <Button variant="outlined">View Link</Button>
+          </Link>
         </TableCell>
         <TableCell align="center">{row.latest_post_date}</TableCell>
         <TableCell align="center">
-          <Chip label={row.risk} style={{ background: "red" }} />
+          {/* <Chip label={row.risk} style={{ background: "red" }} /> */}
+          {row.risk === "High" ? (
+            <Chip
+              label={row.risk}
+              style={{ background: "red", width: "100px" }}
+            />
+          ) : (
+            <Chip
+              label={row.risk}
+              style={{ background: "#ffd700", width: "100px" }}
+            />
+          )}
         </TableCell>
         <TableCell align="center">
           <StarRatings
