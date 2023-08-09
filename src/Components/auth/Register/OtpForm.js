@@ -8,25 +8,25 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
 const validationSchema = yup.object({
-  otp: yup
-    .string("Enter OTP")
-    .required("OTP is required")
+  otp: yup.string("Enter OTP").required("OTP is required"),
 });
 function OTPForm() {
   const location = useLocation();
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      otp: ""
+      otp: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      axios.get(`http://10.20.7.109:8000/api/totp/login/${values.otp}/`)
-      .then((response) => {
-          if (response.status===200){
+      axios
+        .get(`http://10.20.7.109:8000/api/totp/login/${values.otp}/`)
+        .then((response) => {
+          if (response.status === 200) {
             navigate("/searchkey");
           }
-        }).catch((error) => {
+        })
+        .catch((error) => {
           toast.error("wrong otp", {
             position: "top-right",
             autoClose: 5000,
@@ -36,7 +36,7 @@ function OTPForm() {
             draggable: true,
             progress: undefined,
             theme: "dark",
-          })
+          });
         });
     },
   });
@@ -48,17 +48,18 @@ function OTPForm() {
         <p className="Form__subheading">Verify Your Account</p>
         <div>
           <form onSubmit={formik.handleSubmit}>
-              <TextField
-                margin="normal"
-                id="otp"
-                name="otp"
-                label="OTP"
-                variant="outlined"
-                value={formik.values.otp}
-                onChange={formik.handleChange}
-                error={formik.touched.otp && Boolean(formik.errors.otp)}
-                helperText={formik.touched.otp && formik.errors.otp}
-              />
+            <TextField
+              fullWidth
+              margin="normal"
+              id="otp"
+              name="otp"
+              label="OTP"
+              variant="outlined"
+              value={formik.values.otp}
+              onChange={formik.handleChange}
+              error={formik.touched.otp && Boolean(formik.errors.otp)}
+              helperText={formik.touched.otp && formik.errors.otp}
+            />
             <Button
               color="primary"
               variant="contained"

@@ -73,15 +73,28 @@ function Row(props) {
         <TableCell align="center">{row.latest_post_date}</TableCell>
         <TableCell align="center">
           {/* <Chip label={row.risk} style={{ background: "red" }} /> */}
-          {row.risk === "High" ? (
+          {row.risk === "High" && (
             <Chip
               label={row.risk}
               style={{ background: "red", width: "100px" }}
             />
-          ) : (
+          )}
+          {row.risk === "moderate" && (
+            <Chip
+              label="Moderate"
+              style={{ background: "#ffd700", width: "100px" }}
+            />
+          )}
+          {row.risk === "Moderate" && (
+            <Chip
+              label="Moderate"
+              style={{ background: "#ffd700", width: "100px" }}
+            />
+          )}
+          {row.risk === "In Progress" && (
             <Chip
               label={row.risk}
-              style={{ background: "#ffd700", width: "100px" }}
+              style={{ background: "#87CEEB", width: "100px" }}
             />
           )}
         </TableCell>
