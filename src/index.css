@@ -7,3 +7,14 @@ body {
 code {
   font-family: "Source Sans 3", sans-serif;
 }
+
+.MuiTable-root,
+.MuiTableCell-root {
+  color: white !important;
+  font-size: 18px !important;
+}
+
+.MuiTable-root,
+.MuiTableCell-root {
+  color: white !important;
+}

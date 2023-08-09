@@ -8,8 +8,9 @@ function Header__Logged__in() {
   return (
     <div className="header__inContainer">
       <div className="header__heading">
-<Link to="/dashboard" style={{textDecoration:'none'}}>Hi Akash,</Link>
-
+        <Link to="/dashboard" style={{ textDecoration: "none" }}>
+          Hello
+        </Link>
       </div>
       <div className="header__textfield">
         <TextField
