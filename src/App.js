@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Pages/Home Page/Home";
 import RegisterPage from "./Pages/Auth/RegisterPage";
-import OtpPage from "./Pages/Auth/OtpPage";
 import SearchKeyPage from "./Pages/SearchKey/SearchKeyPage";
 import BlockChainPage from "./Pages/BlockChain/BlockChainPage";
 import TransactionPage from "./Pages/Transaction/TransactionPage";
@@ -11,6 +10,7 @@ import WatchlistPage from "./Pages/watchlist/WatchlistPage";
 import UpdateWatchlistPage from "./Pages/watchlist/UpdateWatchlistPage";
 import DemixerPage from "./Pages/Demixer/DemixerPage";
 import DehopperPage from "./Pages/Dehopper/DehopperPage";
+import OTPPage from "./Pages/Auth/OtpPage";
 
 function App() {
   return (
@@ -18,8 +18,8 @@ function App() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="register" element={<RegisterPage />} />
-        <Route path="verify" element={<OtpPage />} />
         <Route path="searchkey" element={<SearchKeyPage />} />
+        <Route path="otp" element={< OTPPage />} />
         <Route path="blockchain" element={<BlockChainPage />} />
         <Route path="transaction" element={<TransactionPage />} />
         <Route path="dashboard" element={<DashPage />} />

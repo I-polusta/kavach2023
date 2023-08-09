@@ -42,7 +42,7 @@ function LoginForm() {
           progress: undefined,
           theme: "dark",
         });
-        navigate("/searchkey");
+        navigate("/otp");
       } else {
         toast.error("Wrong Credentials, Try again", {
           position: "top-right",

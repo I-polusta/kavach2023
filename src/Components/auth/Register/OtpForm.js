@@ -12,7 +12,7 @@ const validationSchema = yup.object({
     .string("Enter OTP")
     .required("OTP is required")
 });
-function RegisterForm() {
+function OTPForm() {
   const location = useLocation();
   const navigate = useNavigate();
   const formik = useFormik({
@@ -21,14 +21,10 @@ function RegisterForm() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      axios.put("http://localhost:3000/auth/signup/verify", {
-          email:location.state.email,
-          name:location.state.name,
-          password:location.state.password,
-          otp:values.otp
-        }).then((response) => {
-          if (response.status===201){
-            navigate("/dashboard");
+      axios.get(`http://10.20.7.109:8000/api/totp/login/${values.otp}/`)
+      .then((response) => {
+          if (response.status===200){
+            navigate("/searchkey");
           }
         }).catch((error) => {
           toast.error("wrong otp", {
@@ -91,4 +87,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default OTPForm;
