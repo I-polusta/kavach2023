@@ -9,6 +9,7 @@ import TransactionPage from "./Pages/Transaction/TransactionPage";
 import DashPage from "./Pages/Dashboard/DashPage";
 import WatchlistPage from "./Pages/watchlist/WatchlistPage";
 import UpdateWatchlistPage from "./Pages/watchlist/UpdateWatchlistPage";
+import DemixerPage from "./Pages/Demixer/DemixerPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="dashboard" element={<DashPage />} />
         <Route path="watchlist" element={<WatchlistPage />} />
         <Route path="updateList" element={<UpdateWatchlistPage />} />
+        <Route path="demixer" element={<DemixerPage />} />
       </Routes>
     </BrowserRouter>
   );

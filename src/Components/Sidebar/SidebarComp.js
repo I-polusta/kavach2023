@@ -4,6 +4,8 @@ import {
   BookmarkOutlined,
   DashboardOutlined,
   PaidOutlined,
+  Tune,
+  TuneOutlined,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -13,10 +15,12 @@ function SidebarComp() {
   const [dashactive, setDashactive] = useState(false);
   const [transactive, setTransactive] = useState(false);
   const [watchactive, setWatchactive] = useState(false);
+  const [mixactive, setMixactive] = useState(false);
   useEffect(() => {
     if (path === "/dashboard") setDashactive(true);
     if (path === "/transaction") setTransactive(true);
     if (path === "/watchlist") setWatchactive(true);
+    if (path === "/demixer") setMixactive(true);
   }, []);
 
   return (
@@ -62,6 +66,23 @@ function SidebarComp() {
             {" "}
             <BookmarkOutlined style={{ padding: "10px" }} />
             Watchlist
+          </div>
+        </Link>
+      )}
+
+      {mixactive ? (
+        <Link to="/demixer" style={{ textDecoration: "none" }}>
+          <div className="sidebar__list__active">
+            <TuneOutlined style={{ padding: "10px" }} />
+            Demixer
+          </div>
+        </Link>
+      ) : (
+        <Link to="/demixer" style={{ textDecoration: "none" }}>
+          <div className="sidebar__list">
+            {" "}
+            <TuneOutlined style={{ padding: "10px" }} />
+            Demixer
           </div>
         </Link>
       )}
