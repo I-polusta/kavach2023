@@ -17,12 +17,14 @@ function SidebarComp() {
   const [watchactive, setWatchactive] = useState(false);
   const [mixactive, setMixactive] = useState(false);
   const [dehopactive, setDehopactive] = useState(false);
+  const [reportactive, setReportactive] = useState(false);
   useEffect(() => {
     if (path === "/dashboard") setDashactive(true);
     if (path === "/transaction") setTransactive(true);
     if (path === "/watchlist") setWatchactive(true);
     if (path === "/demixer") setMixactive(true);
     if (path === "/dehopper") setDehopactive(true);
+    if (path === "/report") setReportactive(true);
   }, []);
 
   return (
@@ -101,6 +103,23 @@ function SidebarComp() {
             {" "}
             <TuneOutlined style={{ padding: "10px" }} />
             Dehopper
+          </div>
+        </Link>
+      )}
+
+      {reportactive ? (
+        <Link to="/report" style={{ textDecoration: "none" }}>
+          <div className="sidebar__list__active">
+            <TuneOutlined style={{ padding: "10px" }} />
+            Report
+          </div>
+        </Link>
+      ) : (
+        <Link to="/report" style={{ textDecoration: "none" }}>
+          <div className="sidebar__list">
+            {" "}
+            <TuneOutlined style={{ padding: "10px" }} />
+            Report
           </div>
         </Link>
       )}

@@ -34,6 +34,7 @@ function DashComp() {
   const handleClose = () => {
     setOpen(false);
   };
+
   const [open, setOpen] = useState(false);
   const handleVisualise = () => {
     setOpen(true);
@@ -143,49 +144,48 @@ function DashComp() {
         </div>
       </div>
       <div className="dash__body" style={{ padding: "36px" }}>
-        <div>
-          <div className="dash__body__cont">
-            <div className="collapseContainer">
-              <h1 className="cc__heading">Mixed Transactions:</h1>
-              {data.mixed_transaction ? (
-                <h1 className="cc__subheading">Yes</h1>
-              ) : (
-                <h1 className="cc__subheading">No </h1>
-              )}
-            </div>
-            <div className="collapseContainer">
-              <h1 className="cc__heading">Type of event:</h1>
-              <h1 className="cc__subheading">{data.type}</h1>
-            </div>
-            <div className="collapseContainer">
-              <h1 className="cc__heading">Sender Address:</h1>
-              <h1 className="cc__subheading">{data.sender}</h1>
-            </div>
-            <div className="collapseContainer">
-              <h1 className="cc__heading">Recipient Address:</h1>
-              <h1 className="cc__subheading">{data.reciever_to}</h1>
-            </div>{" "}
-            <div className="collapseContainer">
-              <h1 className="cc__heading">Time of Transaction:</h1>
-              <h1 className="cc__subheading">{data.time}</h1>
-            </div>
-            <div
-              className="collapseContainer"
-              style={{ justifyContent: "flex-start" }}
+        <div className="dash__body__cont" style={{ width: "80%" }}>
+          <div className="collapseContainer">
+            <h1 className="cc__heading">Mixed Transactions:</h1>
+            {data.mixed_transaction ? (
+              <h1 className="cc__subheading">Yes</h1>
+            ) : (
+              <h1 className="cc__subheading">No </h1>
+            )}
+          </div>
+          <div className="collapseContainer">
+            <h1 className="cc__heading">Type of event:</h1>
+            <h1 className="cc__subheading">{data.type}</h1>
+          </div>
+          <div className="collapseContainer">
+            <h1 className="cc__heading">Sender Address:</h1>
+            <h1 className="cc__subheading">{data.sender}</h1>
+          </div>
+          <div className="collapseContainer">
+            <h1 className="cc__heading">Recipient Address:</h1>
+            <h1 className="cc__subheading">{data.reciever_to}</h1>
+          </div>{" "}
+          <div className="collapseContainer" style={{ paddingBottom: "50px" }}>
+            <h1 className="cc__heading">Time of Transaction:</h1>
+            <h1 className="cc__subheading">{data.time}</h1>
+          </div>
+          <div>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: "#021e4e", width: "200px" }}
+              size="large"
+              onClick={handleAddToWatchlist}
             >
-              <img src={data.logo} style={{ width: "20%" }} />
-            </div>
+              Add to Watchlist
+            </Button>
           </div>
         </div>
-        <div>
-          <Button
-            variant="contained"
-            style={{ backgroundColor: "#021e4e", width: "200px" }}
-            size="large"
-            onClick={handleAddToWatchlist}
-          >
-            Add to Watchlist
-          </Button>
+
+        <div
+          className="collapseContainer"
+          style={{ justifyContent: "flex-end", width: "600px" }}
+        >
+          <img src={data.logo} style={{ width: "50%" }} />
         </div>
       </div>
       <ToastContainer />

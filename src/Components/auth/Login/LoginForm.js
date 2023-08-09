@@ -114,6 +114,12 @@ function LoginForm() {
         <div className="fp__subheading">
           <h5>Forgot Password?</h5>
         </div>
+        <div className="fp__subheading__signup">
+          <h5>
+            Don't have an account?
+            <Link to="/register">Sign Up</Link>
+          </h5>
+        </div>
       </div>
       <ToastContainer />
     </div>

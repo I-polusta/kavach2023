@@ -10,6 +10,7 @@ import WatchlistPage from "./Pages/watchlist/WatchlistPage";
 import UpdateWatchlistPage from "./Pages/watchlist/UpdateWatchlistPage";
 import DemixerPage from "./Pages/Demixer/DemixerPage";
 import DehopperPage from "./Pages/Dehopper/DehopperPage";
+import ReportPage from "./Pages/Report/ReportPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="updateList" element={<UpdateWatchlistPage />} />
         <Route path="demixer" element={<DemixerPage />} />
         <Route path="dehopper" element={<DehopperPage />} />
+        <Route path="report" element={<ReportPage />} />
       </Routes>
     </BrowserRouter>
   );

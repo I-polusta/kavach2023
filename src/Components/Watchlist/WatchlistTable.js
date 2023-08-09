@@ -92,7 +92,7 @@ function WatchlistTable() {
 
   return (
     <TableContainer component={Paper} style={{ backgroundColor: "#020a18" }}>
-      <Table aria-label="collapsible table">
+      <Table aria-label="collapsible table" style={{ fontSize: "30px" }}>
         <TableHead>
           <TableRow>
             <TableCell>#</TableCell>
