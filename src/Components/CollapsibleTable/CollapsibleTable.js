@@ -54,6 +54,10 @@ function Row(props) {
       });
   };
 
+  const encodedurl = encodeURIComponent(row.link);
+  console.log(encodedurl);
+  const reurl = "https://www.chainabuse.com/domain/" + encodedurl;
+  console.log(reurl);
   return (
     <React.Fragment>
       <TableRow>
@@ -62,7 +66,7 @@ function Row(props) {
         </TableCell>
         <TableCell align="center">{row.social_media}</TableCell>
         <TableCell align="center">
-          <Link to={row.link} target="blank">
+          <Link to={reurl} target="blank">
             <Button variant="outlined">View Link</Button>
           </Link>
         </TableCell>
